@@ -1,182 +1,243 @@
-//import java.util.List;
+import java.io.*;
+import java.util.List;
 
-public class Human {
-    private Parents p;
-    private Brothers_Sisters bs;
-    private Children c;
-
+public class Human implements Serializable {
     private String nameFIO;
     private Gender gender;
     private int age;
 
-    private String parentsFIO;
-    private String brothers_SistersFIO;
-    private String childrenFIO;
+    private Parents parentsFIO;
+    private BrothersSisters brothers_sistersFIO;
+    private Сhildren childrenFIO;
 
-    public Human(String nameFIO, Gender gender, int age, Parents p, String pFIO, Brothers_Sisters bs, String bsFIO, Children c, String cFIO){
+    public Human(String nameFIO, Gender gender, int age, Parents parentsFIO, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
         this.nameFIO = nameFIO;
         this.gender = gender;
         this.age = age;
-        this.parentsFIO = pFIO;
-        this.brothers_SistersFIO = bsFIO;
-        this.childrenFIO = cFIO;
-    }
-    
-// Перегрузка ------------------------------------------
-  
-    public Human(String nameFIO, Gender gender, int age, Parents p, String pFIO, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, gender, age, null, pFIO, null, bsFIO, null," - ");
+        this.parentsFIO = parentsFIO;
+        this.brothers_sistersFIO = brothers_sistersFIO;
+        this.childrenFIO = childrenFIO;
     }
 
-    public Human(String nameFIO, Gender gender, int age, Parents p, String pFIO, Children c, String cFIO){
-        this(nameFIO, gender, age, null, pFIO, null, " - ", null, cFIO);
+    public Human(String nameFIO, Gender gender, int age, Parents parentsFIO, BrothersSisters brothers_sistersFIO){
+        this(nameFIO, gender, age, parentsFIO, brothers_sistersFIO, null);
     }
 
-    public Human(String nameFIO, Gender gender, int age, Brothers_Sisters bs, String bsFIO, Children c, String cFIO){
-        this(nameFIO, gender, age, null, " - ", null, bsFIO, null, cFIO);
-    }
-
-    public Human(String nameFIO, Gender gender, int age, Parents p, String pFIO){
-        this(nameFIO, gender, age, null, pFIO, null, " - ", null, " - ");
-    }
-
-    public Human(String nameFIO, Gender gender, int age, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, gender, age, null, " - ", null, bsFIO, null, " - ");
-    }
-
-    public Human(String nameFIO, Gender gender, int age, Children c, String cFIO){
-        this(nameFIO, gender, age, null, " - ", null, " - ", null, cFIO);
+    public Human(String nameFIO, Gender gender, int age, Parents parentsFIO){
+        this(nameFIO, gender, age, parentsFIO, null, null);
     }
 
     public Human(String nameFIO, Gender gender, int age){
-        this(nameFIO, gender, age, null, " - ", null, " - ", null, " - ");
-    }
-
-//------------- age = 0
-
-    public Human(String nameFIO, Gender gender, Parents p, String pFIO, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, gender, 0, null, pFIO, null, bsFIO, null," - ");
-    }
-
-    public Human(String nameFIO, Gender gender, Parents p, String pFIO, Children c, String cFIO){
-        this(nameFIO, gender, 0, null, pFIO, null, " - ", null, cFIO);
-    }
-
-    public Human(String nameFIO, Gender gender, Brothers_Sisters bs, String bsFIO, Children c, String cFIO){
-        this(nameFIO, gender, 0, null, " - ", null, bsFIO, null, cFIO);
-    }
-
-    public Human(String nameFIO, Gender gender, Parents p, String pFIO){
-        this(nameFIO, gender, 0, null, pFIO, null, " - ", null, " - ");
-    }
-
-    public Human(String nameFIO, Gender gender, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, gender, 0, null, " - ", null, bsFIO, null, " - ");
-    }
-
-    public Human(String nameFIO, Gender gender, Children c, String cFIO){
-        this(nameFIO, gender, 0, null, " - ", null, " - ", null, cFIO);
+        this(nameFIO, gender, age, null, null, null);
     }
 
     public Human(String nameFIO, Gender gender){
-        this(nameFIO, gender, 0, null, " - ", null, " - ", null, " - ");
-    }
-
-//----------- gender = null
-
-    public Human(String nameFIO, int age, Parents p, String pFIO, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, null, age, null, pFIO, null, bsFIO, null," - ");
-    }
-
-    public Human(String nameFIO, int age, Parents p, String pFIO, Children c, String cFIO){
-        this(nameFIO, null, age, null, pFIO, null, " - ", null, cFIO);
-    }
-
-    public Human(String nameFIO, int age, Brothers_Sisters bs, String bsFIO, Children c, String cFIO){
-        this(nameFIO, null, age, null, " - ", null, bsFIO, null, cFIO);
-    }
-
-    public Human(String nameFIO, int age, Parents p, String pFIO){
-        this(nameFIO, null, age, null, pFIO, null, " - ", null, " - ");
-    }
-
-    public Human(String nameFIO, int age, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, null, age, null, " - ", null, bsFIO, null, " - ");
-    }
-
-    public Human(String nameFIO, int age, Children c, String cFIO){
-        this(nameFIO, null, age, null, " - ", null, " - ", null, cFIO);
-    }
-
-    public Human(String nameFIO, int age){
-        this(nameFIO, null, age, null, " - ", null, " - ", null, " - ");
-    }
-
-//----------- age = 0 gender = null
-
-    public Human(String nameFIO, Parents p, String pFIO, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, null, 0, null, pFIO, null, bsFIO, null," - ");
-    }
-
-    public Human(String nameFIO, Parents p, String pFIO, Children c, String cFIO){
-        this(nameFIO, null, 0, null, pFIO, null, " - ", null, cFIO);
-    }
-
-    public Human(String nameFIO, Brothers_Sisters bs, String bsFIO, Children c, String cFIO){
-        this(nameFIO, null, 0, null, " - ", null, bsFIO, null, cFIO);
-    }
-
-    public Human(String nameFIO, Parents p, String pFIO){
-        this(nameFIO, null, 0, null, pFIO, null, " - ", null, " - ");
-    }
-
-    public Human(String nameFIO, Brothers_Sisters bs, String bsFIO){
-        this(nameFIO, null, 0, null, " - ", null, bsFIO, null, " - ");
-    }
-
-    public Human(String nameFIO, Children c, String cFIO){
-        this(nameFIO, null, 0, null, " - ", null, " - ", null, cFIO);
+        this(nameFIO, gender, 0, null, null, null);
     }
 
     public Human(String nameFIO){
-        this(nameFIO, null, 0, null, " - ", null, " - ", null, " - ");
+        this(nameFIO, null, 0, null, null, null);
+    }
+
+    public Human(){
+        this("No name", null, 0, null, null, null);
+    }
+
+    public Human(String nameFIO, Gender gender, int age, Parents parentsFIO, Сhildren childrenFIO){
+        this(nameFIO, gender, age, parentsFIO, null, childrenFIO);
+    }
+
+    public Human(String nameFIO, Gender gender, int age, Сhildren childrenFIO){
+        this(nameFIO, gender, age, null, null, childrenFIO);
+    }
+
+    public Human(String nameFIO, Gender gender, Сhildren childrenFIO){
+        this(nameFIO, gender, 0, null, null, childrenFIO);
+    }
+
+    public Human(String nameFIO, Сhildren childrenFIO){
+        this(nameFIO, null, 0, null, null, childrenFIO);
+    }
+
+    public Human(String nameFIO, Gender gender, int age, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, gender, age, null, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, Gender gender, int age, BrothersSisters brothers_sistersFIO){
+        this(nameFIO, gender, age, null, brothers_sistersFIO, null);
+    }
+
+    public Human(String nameFIO, Gender gender, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, gender, 0, null, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, null, 0, null, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, BrothersSisters brothers_sistersFIO){
+        this(nameFIO, null, 0, null, brothers_sistersFIO, null);
+    }
+
+    public Human(String nameFIO, Gender gender, Parents parentsFIO, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, gender, 0, parentsFIO, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, Parents parentsFIO, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, null, 0, parentsFIO, brothers_sistersFIO, childrenFIO);
     }
     
-    public Human(){
-        this(" - ", null, 0, null, " - ", null, " - ", null, " - ");
+    public Human(String nameFIO, Parents parentsFIO, Сhildren childrenFIO){
+        this(nameFIO, null, 0, parentsFIO, null, childrenFIO);
     }
 
-//------------------------------------------------------------------
+    public Human(String nameFIO, Parents parentsFIO){
+        this(nameFIO, null, 0, parentsFIO, null, null);
+    }
 
-    public String getName(){
+    public Human(String nameFIO, int age, Parents parentsFIO, BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, null, age, parentsFIO, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, int age,  BrothersSisters brothers_sistersFIO, Сhildren childrenFIO){
+        this(nameFIO, null, age, null, brothers_sistersFIO, childrenFIO);
+    }
+
+    public Human(String nameFIO, int age,  BrothersSisters brothers_sistersFIO){
+        this(nameFIO, null, age, null, brothers_sistersFIO, null);
+    }
+
+    public String getHumanName(){
         return nameFIO;
     }
 
-    public String getParents(){
-        return parentsFIO;
+    public Gender getHumanGender(){
+        if (gender != null){
+            return gender;
+        }
+        return null;
     }
 
-    public String getChildren(){
-        return childrenFIO;
+    public String getHumanParentFather(){
+        if (parentsFIO != null){
+            return parentsFIO.getParentFatherFIO();
+        }
+        return null;
     }
 
-    public String getBrothersSisters(){
-        return brothers_SistersFIO;
+    public String getHumanParentMother(){
+        if (parentsFIO != null){
+            return parentsFIO.getParentMotherFIO();
+        }
+        return null;
     }
 
-    public void setParents(String txt) {
-        this.parentsFIO = txt;
+    public String getHumanParents(){
+        if (parentsFIO != null){
+            return parentsFIO.getParentsFIO();
+        }
+        return null;
     }
 
-    public void setChildren(String txt) {
-        this.childrenFIO = txt;
+    public List<String> getHumanChildrenList(){
+        if (childrenFIO != null){
+            return childrenFIO.getСhildrenFIO();
+        }
+        return null;
     }
 
-    public void setBrothersSisters(String txt) {
-        this.brothers_SistersFIO = txt;
+    public String getHumanChildren(){
+        StringBuilder string_builder = new StringBuilder();
+        if (childrenFIO != null){
+            if (childrenFIO.getСhildrenFIO() == null ){
+                return null;
+            }
+            for(String i: childrenFIO.getСhildrenFIO()){
+                string_builder.append(i + ", ");
+            }
+            string_builder.replace(string_builder.length()-2, string_builder.length(), ".");
+            return string_builder.toString();
+        }
+        return null;
     }
 
-// На печать -------------------------------------------
+    public List<String> getHumanBrothersSistersList(){
+        if (brothers_sistersFIO != null){
+            return brothers_sistersFIO.getBrothersSistersFIO();
+        }
+        return null;
+    }
+
+    public String getHumanBrothersSisters(){
+        StringBuilder string_builder = new StringBuilder();
+        if (brothers_sistersFIO != null ){
+            if (brothers_sistersFIO.getBrothersSistersFIO() == null ){
+                return null;
+            }
+            for(String i: brothers_sistersFIO.getBrothersSistersFIO()){
+                string_builder.append(i + ", ");
+            }
+            string_builder.replace(string_builder.length()-2, string_builder.length(), ".");
+            return string_builder.toString();
+        }
+        return null;
+    }
+
+    public void setHumanParentFather(String txt) {
+        if (parentsFIO == null){
+            parentsFIO = new Parents();
+            parentsFIO.setParentFatherFIO(txt);
+        }
+        else{
+            parentsFIO.setParentFatherFIO(txt);
+        }
+    }
+
+    public void setHumanParentMother(String txt) {
+        if (parentsFIO == null){
+            parentsFIO = new Parents();
+            parentsFIO.setParentMotherFIO(txt);
+        }
+        else{
+            parentsFIO.setParentMotherFIO(txt);
+        }
+    }
+
+    public void setHumanChildren(String txt) {
+        if (childrenFIO == null){
+            childrenFIO = new Сhildren();
+            childrenFIO.setСhildrenFIO(txt);
+        }
+        else{
+            childrenFIO.setСhildrenFIO(txt);
+        }
+    }
+
+    public void setHumanBrothersSisters(String txt) {
+        if (brothers_sistersFIO == null){
+            brothers_sistersFIO = new BrothersSisters();
+            brothers_sistersFIO.setBrothersSistersFIO(txt);
+        }
+        else{
+            brothers_sistersFIO.setBrothersSistersFIO(txt);
+        }
+    }
+
+    public void delHumanBrothersSisters(String txt) {
+        brothers_sistersFIO.delBrothersSistersFIO(txt);
+    }
+
+    public void delHumanChildren(String txt) {
+        childrenFIO.delСhildrenFIO(txt);
+    }
+
+    public void delHumanParentFather() {
+        parentsFIO.delParentFather();
+    }
+
+    public void delHumanParentMother() {
+        parentsFIO.delParentMother();
+    }
 
     @Override
     public String toString() {
